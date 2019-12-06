@@ -1,6 +1,8 @@
 import React from 'react';
 import {Search} from '../Search/Search'
 //import ListPill from '../ListPill/ListPill'
+import {OutsideAlert} from '../OutsideAlert/OutsideAlert'
+
 
 
 export class App extends React.Component {
@@ -90,12 +92,6 @@ console.log(url);
 
   renderSuggestion(){
   const {suggestions}=this.state;
-  let isOpen=this.state.isOpen;
-  if(!isOpen)
-    isOpen="Show";
-  else
-    isOpen="Hide";
-
 
   if(suggestions.length===0)
   {
@@ -103,7 +99,7 @@ console.log(url);
   }
 
     return (
-      <div id="divBox" className={"BoxShadow Toggle"+isOpen}>
+      <div id="divBox" className={"BoxShadow ToggleShow"}>
       <ul>
         {suggestions.map(item=>
 
@@ -121,36 +117,18 @@ console.log(url);
   }
 
 
-  componentWillMount(){
-    document.addEventListener('click',this.onClickOutsideHandler,false)
-  }
-
-  componentWillUnmount() {
-      document.removeEventListener('click', this.onClickOutsideHandler,false);
-    }
-
-    /*onClickHandler() {
-       this.setState({isOpen: !this.state.isOpen});
-
-  }*/
-
-/*  onClickOutsideHandler(event) {
-       this.setState({isOpen: !this.state.isOpen});
-
-    }*/
-
-
-
   render() {
 
     return (
-      <div  ref="search">
-      <div className="SearchDiv">
-      <Search items={this.state.items} onClick={this.onClickHandler} onKeyDown={this.getMovies}
+      <div>
+      <OutsideAlert>
+       <Search items={this.state.items} onClick={this.onClickHandler} onKeyDown={this.getMovies}
       onChange={this.handelOnChange}  text={this.state.text} />
+        </OutsideAlert>
         {this.renderSuggestion()}
         </div>
-        </div>
+
+
 
     );
   }

@@ -19,7 +19,7 @@ ul{
 }
 
 .BoxShadow{
-
+  display: block;
   box-shadow: 5px 5px 5px lightgray;
   margin-left: 30%;
   width:30%
