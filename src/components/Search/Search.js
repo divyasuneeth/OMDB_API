@@ -8,8 +8,8 @@ export class Search extends React.Component{
 
     return(
 
-        <input className="SearchBox" value={this.props.text}  type="text" onChange={this.props.onChange}
-        onKeyDown={this.props.onKeyDown}/>
+        <input className="SearchBox" value={this.props.text}  type="textarea" onChange={this.props.onChange}
+        onKeyDown={this.props.onKeyDown} onClick={this.props.onClick}/>
 
     );
   }

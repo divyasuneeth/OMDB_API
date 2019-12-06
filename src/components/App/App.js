@@ -1,5 +1,7 @@
 import React from 'react';
 import {Search} from '../Search/Search'
+//import ListPill from '../ListPill/ListPill'
+
 
 export class App extends React.Component {
 
@@ -15,7 +17,6 @@ export class App extends React.Component {
 
   this.handelOnChange=this.handelOnChange.bind(this);
   this.getMovies=this.getMovies.bind(this);
-
 
   }
 
@@ -37,7 +38,7 @@ console.log(url);
           if (xhr.readyState === XMLHttpRequest.DONE) {
             const response=xhr.response;
             //console.log(xhr.response);
-              if(response.Response!=='False')
+              if(response.Response && response.Response!=='False')
               {
                 console.log(response.Search.map(item=>item.Title));
                 let arr=response.Search.map(item=>item.Title);
@@ -89,14 +90,23 @@ console.log(url);
 
   renderSuggestion(){
   const {suggestions}=this.state;
+  let isOpen=this.state.isOpen;
+  if(!isOpen)
+    isOpen="Show";
+  else
+    isOpen="Hide";
+
+
   if(suggestions.length===0)
   {
     return null;
   }
+
     return (
-      <div id="divBox" className="BoxShadow">
+      <div id="divBox" className={"BoxShadow Toggle"+isOpen}>
       <ul>
         {suggestions.map(item=>
+
           <li  onClick={()=>this.suggestionSelected(item)}>{item}</li>)}
       </ul>
       </div>
@@ -111,17 +121,37 @@ console.log(url);
   }
 
 
+  componentWillMount(){
+    document.addEventListener('click',this.onClickOutsideHandler,false)
+  }
+
+  componentWillUnmount() {
+      document.removeEventListener('click', this.onClickOutsideHandler,false);
+    }
+
+    /*onClickHandler() {
+       this.setState({isOpen: !this.state.isOpen});
+
+  }*/
+
+/*  onClickOutsideHandler(event) {
+       this.setState({isOpen: !this.state.isOpen});
+
+    }*/
+
 
 
   render() {
 
     return (
-      <form>
+      <div  ref="search">
       <div className="SearchDiv">
-      <Search items={this.state.items} onKeyDown={this.getMovies} onChange={this.handelOnChange} text={this.state.text} />
+      <Search items={this.state.items} onClick={this.onClickHandler} onKeyDown={this.getMovies}
+      onChange={this.handelOnChange}  text={this.state.text} />
         {this.renderSuggestion()}
         </div>
-        </form>
+        </div>
+
     );
   }
 
