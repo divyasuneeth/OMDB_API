@@ -28,6 +28,21 @@
   color: #61dafb;
 }
 
+
+.SearchDiv {
+  position: absolute;
+  margin: auto;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 500px;
+  height: 300px;
+
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +50,3 @@
   to {
     transform: rotate(360deg);
   }
-}
