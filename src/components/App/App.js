@@ -81,39 +81,42 @@ renderSuggestion(){
           {listitem}
         </ul>
     );
-  }
+}
 
 
   suggestionSelected(value){
-  console.log("selected Suggsestion"+ value);
-  this.setState({
-    text:value,
-    suggestions:[]
-  });
-  const pillElement=document.getElementsByClassName('hide');
-  const element=pillElement[pillElement.length-1];
-  element.textContent=value;
-  element.className = element.className.replace('hide','ic-tokens' );
 
-  element.removeAttribute('hide');
+    this.setState({
+      text:value,
+      suggestions:[]
+    });
 
-  document.getElementById('search-text').value="";
+    const pillElement=document.getElementsByClassName('hide');
+    const element=pillElement[0];
+    if(element)
+    {
+      element.textContent=value;
+      element.className = element.className.replace('hide','ic-tokens' );
+    }
+    document.getElementById('search-text').value="";
 
-  }
 
+}
 
   render() {
     return (
 
     <OutsideAlert>
         <div className="App">
-            <div className="SearchBox" >
-                <p className="hide"></p>
-                   <div>
+            <div className="SearchBox">
+                <span className="hide"></span>
+                <span className="hide"></span>
+                <span className="hide"></span>
+                <span className="hide"></span>
+                <span className="hide"></span>
                       <Search  onKeyDown={this.getMovies}
                        onChange={this.handelOnChange}  text={this.state.text} />
-                          {this.renderSuggestion()}
-                  </div>
+                      {this.renderSuggestion()}
             </div>
         </div>
     </OutsideAlert>

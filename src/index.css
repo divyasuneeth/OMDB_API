@@ -62,8 +62,8 @@ li:nth-child(odd){
   background-color: #f8fdfe;
 }
 .SearchEdit{
-margin: 10px;
-  width: 100%;
+  margin: 10px;
+  width: 50%;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
