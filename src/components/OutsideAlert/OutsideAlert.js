@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 export class OutsideAlert extends Component {
   constructor(props) {
     super(props);
-
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
@@ -29,17 +28,16 @@ export class OutsideAlert extends Component {
    * Alert if clicked on outside of element
    */
   handleClickOutside(event) {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      //alert('You clicked outside of me!');
-    const element= document.getElementsByClassName('ToggleShow')[0];
-    if(element)
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target))
     {
-        element.style.display="none";
-    }
-
+      const element= document.getElementsByClassName('ToggleShow')[0];
+      if(element)
+      {
+          element.style.display="none";
+      }
     }
   }
-
+  
   render() {
     return <div ref={this.setWrapperRef}>{this.props.children}</div>;
   }

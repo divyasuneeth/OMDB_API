@@ -10,7 +10,6 @@ export class App extends React.Component {
 
   constructor(props){
     super(props);
-    //this.items=['Dog','Cat','Deer','Cape','Mouse','Mitten'];
 
     this.state={
       items:[],
@@ -20,6 +19,7 @@ export class App extends React.Component {
 
   this.handelOnChange=this.handelOnChange.bind(this);
   this.getMovies=this.getMovies.bind(this);
+  this.suggestionSelected=this.suggestionSelected.bind(this);
 
   }
 
@@ -71,23 +71,24 @@ handelOnChange(e){
   console.log(this.state);
   }
 
-
-
-
-  renderSuggestion(){
+renderSuggestion(){
   const {suggestions}=this.state;
+  let listitem=[];
 
   if(suggestions.length===0)
   {
     return null;
   }
 
-    return (
+  for(let i=0;i<suggestions.length;i++)
+  {
+    listitem.push(<ListPill onClick={this.suggestionSelected} value={suggestions[i]}/>)
+  }
 
+  return(
         <ul className="ToggleShow">
-          { suggestions.map((item)=><li onClick={()=>this.suggestionSelected(item)}>{item}</li>)}
+          {listitem}
         </ul>
-    
     );
   }
 
