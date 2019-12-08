@@ -32,7 +32,10 @@ export class OutsideAlert extends Component {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       //alert('You clicked outside of me!');
     const element= document.getElementsByClassName('ToggleShow')[0];
-    element.style.display="none";
+    if(element)
+    {
+        element.style.display="none";
+    }
 
     }
   }
