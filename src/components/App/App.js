@@ -11,7 +11,8 @@ export class App extends React.Component {
 
     this.state={
       suggestions:[],
-      text:''
+      text:'',
+      selecteditems:[]
     };
 
   this.handelOnChange=this.handelOnChange.bind(this);
@@ -86,21 +87,41 @@ renderSuggestion(){
 
   suggestionSelected(value){
 
+    let {selecteditems}=this.state;
+    if(selecteditems.length<5){
+      selecteditems.push(value);
+    }
+    if(selecteditems.length===5) {
+      const element=document.getElementById('search-text');
+      element.style.display="none";
+    }
+
     this.setState({
       text:value,
-      suggestions:[]
+      suggestions:[],
+      selecteditems:selecteditems
     });
 
-    const pillElement=document.getElementsByClassName('hide');
-    const element=pillElement[0];
-    if(element)
-    {
-      element.textContent=value;
-      element.className = element.className.replace('hide','ic-tokens' );
-    }
+    // const pillElement=document.getElementsByClassName('hide');
+    // const element=pillElement[0];
+    // if(element)
+    // {
+    //   element.textContent=value;
+    //   element.className = element.className.replace('hide','ic-tokens' );
+    // }
+
     document.getElementById('search-text').value="";
+}
 
+renderPill(){
+  const {selecteditems}=this.state;
+  if(selecteditems.length===0)
+  return null;
 
+  return(
+    selecteditems.map((item)=><span className="ic-tokens">{item}</span>)
+
+  );
 }
 
   render() {
@@ -109,6 +130,7 @@ renderSuggestion(){
     <OutsideAlert>
         <div className="App">
             <div className="SearchBox">
+            {this.renderPill()}
                       <Search  onKeyDown={this.getMovies}
                        onChange={this.handelOnChange}  text={this.state.text} />
             </div>{this.renderSuggestion()}
