@@ -104,20 +104,14 @@ renderSuggestion(){
 }
 
   render() {
-    return (
 
+    return (
     <OutsideAlert>
         <div className="App">
             <div className="SearchBox">
-                <span className="hide"></span>
-                <span className="hide"></span>
-                <span className="hide"></span>
-                <span className="hide"></span>
-                <span className="hide"></span>
                       <Search  onKeyDown={this.getMovies}
                        onChange={this.handelOnChange}  text={this.state.text} />
-                      {this.renderSuggestion()}
-            </div>
+            </div>{this.renderSuggestion()}
         </div>
     </OutsideAlert>
 

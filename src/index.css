@@ -11,16 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
 *:focus {
     outline: none;
 }
 
 .App {
   position:absolute;
-  height: 15%;
-  width: 40%;
-  left:30%;
-  top:30%
+  left:20%;
+  top:30%;
+  width: 60%;
+  max-height:50%;
+  border: 1px solid rgb(175, 203, 240);
+  border-radius: 25px;
 }
 
 
@@ -30,8 +34,6 @@ code {
 .ToggleShow{
   margin: 0px;
   padding: 0px;
-  display:inline-grid;
-  position: absolute;
   left: 20px;
   top: 35px;
 
@@ -39,13 +41,12 @@ code {
 }
 
 .SearchBox{
-border: 1px solid rgb(175, 203, 240);
-border-radius: 25px;
+position: relative;
 font-size: 20px;
-width: 95%;
-display: inline-flex;
 text-align: -webkit-match-parent;
-padding: 0px;
+padding: 5px;
+width: 100%;
+margin: 1px 0px 3px 1px;
 }
 
 li{
@@ -62,27 +63,27 @@ li:nth-child(odd){
   background-color: #f8fdfe;
 }
 .SearchEdit{
-  margin: 10px;
-  width: 50%;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
+position: relative;
   box-sizing: border-box;
   border: 0 none;
   outline: 0;
-  margin-top: 6px;
-  margin-bottom: 6px;
   font-size: medium;
+  display: inline-flex;
+  margin:5px;
 }
 
-
+#div-search{
+  margin: 5px;
+}
 
 .ic-tokens {
-padding: 6px;
+padding: 5px;
 background-color: #d9d9d9;
 border-radius: 25px;
 min-width: 60px;
 font-size: small;
 margin: 3px;
+display: inline;
 }
 .hide{
   display: none;
