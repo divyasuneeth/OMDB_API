@@ -1,5 +1,5 @@
 import React from 'react'
-import './ListPill.css'
+
 
 export class ListPill extends React.Component{
   constructor(props){

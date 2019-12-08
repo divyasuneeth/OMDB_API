@@ -2,8 +2,6 @@ import React from 'react';
 import {Search} from '../Search/Search'
 import {ListPill} from '../ListPill/ListPill'
 import {OutsideAlert} from '../OutsideAlert/OutsideAlert'
-import  './App.css'
-
 
 
 export class App extends React.Component {
@@ -91,6 +89,10 @@ renderSuggestion(){
     text:value,
     suggestions:[]
   });
+  const pillElement=document.getElementsByClassName('ic-tokens');
+  pillElement[pillElement.length-1].textContent=value;
+  document.getElementById('search-text').value="";
+
   }
 
 
@@ -99,10 +101,11 @@ renderSuggestion(){
 
       <OutsideAlert>
        <div className="App">
-           <Search  onKeyDown={this.getMovies}
-          onChange={this.handelOnChange}  text={this.state.text} />
+      <Search  onKeyDown={this.getMovies}
+       onChange={this.handelOnChange}  text={this.state.text} />
+
           {this.renderSuggestion()}
-       </div>
+      </div>
     </OutsideAlert>
 
 
