@@ -21,7 +21,7 @@ code {
   position:absolute;
   left:20%;
   top:30%;
-  width: 60%;
+  width: 70%;
   max-height:50%;
   border: 1px solid rgb(175, 203, 240);
   border-radius: 25px;
@@ -45,7 +45,7 @@ position: relative;
 font-size: 20px;
 text-align: -webkit-match-parent;
 padding: 5px;
-width: 100%;
+/*width: 100%;*/
 margin: 1px 0px 3px 1px;
 }
 
@@ -73,7 +73,8 @@ position: relative;
 }
 
 #div-search{
-  margin: 5px;
+
+  display: block;
 }
 
 .ic-tokens {
@@ -82,8 +83,8 @@ background-color: #d9d9d9;
 border-radius: 25px;
 min-width: 60px;
 font-size: small;
-margin: 3px;
-display: inline;
+display: inline-flex;
+margin:2px;
 }
 .hide{
   display: none;
