@@ -14,6 +14,7 @@ code {
 *:focus {
     outline: none;
 }
+
 .App {
   position:absolute;
   height: 15%;
@@ -32,7 +33,7 @@ code {
   display:inline-grid;
   position: absolute;
   left: 20px;
-  top: 45px;
+  top: 35px;
 
 
 }
@@ -61,7 +62,7 @@ li:nth-child(odd){
   background-color: #f8fdfe;
 }
 .SearchEdit{
-padding-right: 20px;
+margin: 10px;
   width: 100%;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -70,9 +71,11 @@ padding-right: 20px;
   outline: 0;
   margin-top: 6px;
   margin-bottom: 6px;
-  background-color: transparent;
   font-size: medium;
 }
+
+
+
 .ic-tokens {
 padding: 6px;
 background-color: #d9d9d9;
@@ -80,5 +83,8 @@ border-radius: 25px;
 min-width: 60px;
 font-size: small;
 margin: 3px;
+}
+.hide{
+  display: none;
 
 }

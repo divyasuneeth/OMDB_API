@@ -72,7 +72,8 @@ renderSuggestion(){
 
   for(let i=0;i<suggestions.length;i++)
   {
-    listitem.push(<ListPill onClick={this.suggestionSelected} value={suggestions[i]}/>)
+    listitem.push(<ListPill onClick={this.suggestionSelected}
+      value={suggestions[i]}/>)
   }
 
   return(
@@ -89,8 +90,13 @@ renderSuggestion(){
     text:value,
     suggestions:[]
   });
-  const pillElement=document.getElementsByClassName('ic-tokens');
-  pillElement[pillElement.length-1].textContent=value;
+  const pillElement=document.getElementsByClassName('hide');
+  const element=pillElement[pillElement.length-1];
+  element.textContent=value;
+  element.className = element.className.replace('hide','ic-tokens' );
+
+  element.removeAttribute('hide');
+
   document.getElementById('search-text').value="";
 
   }
@@ -99,13 +105,17 @@ renderSuggestion(){
   render() {
     return (
 
-      <OutsideAlert>
-       <div className="App">
-      <Search  onKeyDown={this.getMovies}
-       onChange={this.handelOnChange}  text={this.state.text} />
-
-          {this.renderSuggestion()}
-      </div>
+    <OutsideAlert>
+        <div className="App">
+            <div className="SearchBox" >
+                <p className="hide"></p>
+                   <div>
+                      <Search  onKeyDown={this.getMovies}
+                       onChange={this.handelOnChange}  text={this.state.text} />
+                          {this.renderSuggestion()}
+                  </div>
+            </div>
+        </div>
     </OutsideAlert>
 
 
