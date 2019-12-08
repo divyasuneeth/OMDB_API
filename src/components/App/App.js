@@ -12,7 +12,6 @@ export class App extends React.Component {
     super(props);
 
     this.state={
-      items:[],
       suggestions:[],
       text:''
     };
@@ -31,17 +30,14 @@ export class App extends React.Component {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
-
         xhr.onreadystatechange = () => {
           if (xhr.readyState === XMLHttpRequest.DONE) {
             const response=xhr.response;
             //console.log(xhr.response);
               if(response.Response && response.Response!=='False')
               {
-                console.log(response.Search.map(item=>item.Title));
                 let arr=response.Search.map(item=>item.Title);
                 this.setState({
-                  items:arr,
                   suggestions:arr
                 });
               }
@@ -51,25 +47,21 @@ export class App extends React.Component {
         xhr.open('GET', url);
         xhr.send();
 
-
 }
 
 handelOnChange(e){
   const text= e.target.value;
   let {suggestions}=this.state;
-  const {items}=this.state;
 
   if(text.length>0)
           {
-            suggestions=items.sort().filter(v =>v.includes(text));
+            suggestions=suggestions.sort().filter(v =>v.includes(text));
           }
   this.setState({
     text:e.target.value,
     suggestions:suggestions
   });
-
-  console.log(this.state);
-  }
+}
 
 renderSuggestion(){
   const {suggestions}=this.state;
