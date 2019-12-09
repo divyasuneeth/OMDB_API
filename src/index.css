@@ -56,7 +56,7 @@ li{
   border: 1px solid #a4ddeb;
 }
 
-li:nth-child(even){
+ li :nth-child(even){
   background-color: #ebf8fb;
 }
 li:nth-child(odd){
@@ -86,7 +86,10 @@ font-size: small;
 display: inline-flex;
 margin:2px;
 }
-.hide{
-  display: none;
 
+.pillLi{
+  border:none;
+  padding: 0px;
+  margin: 0px;
+  display: inline;
 }

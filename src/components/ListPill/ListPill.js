@@ -13,7 +13,7 @@ export class ListPill extends React.Component{
 
   render(){
     return(
-      <li onClick={this.handleClick}>{this.props.value}</li>
+      <li className="suggestionlist" onClick={this.handleClick}>{this.props.value}</li>
     );
   }
 }

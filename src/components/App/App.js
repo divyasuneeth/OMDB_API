@@ -116,12 +116,17 @@ renderSuggestion(){
 renderPill(){
   const {selecteditems}=this.state;
   if(selecteditems.length===0)
-  return null;
+    return null;
 
   return(
-    selecteditems.map((item)=><span className="ic-tokens">{item}</span>)
-
+    selecteditems.map((item)=><p className="pillLi"><span className="ic-tokens">{item}</span>
+    <span onClick={this.removeSelectedItem}>x</span></p>)
   );
+}
+
+removeSelectedItem(e){
+console.log("inside the removeSelected");
+  console.log(e);
 }
 
   render() {
@@ -130,10 +135,11 @@ renderPill(){
     <OutsideAlert>
         <div className="App">
             <div className="SearchBox">
-            {this.renderPill()}
-                      <Search  onKeyDown={this.getMovies}
+                  {this.renderPill()}
+                  <Search  onKeyDown={this.getMovies}
                        onChange={this.handelOnChange}  text={this.state.text} />
-            </div>{this.renderSuggestion()}
+            </div>
+            {this.renderSuggestion()}
         </div>
     </OutsideAlert>
 
