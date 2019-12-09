@@ -117,7 +117,9 @@ renderPill(){
 removeSelectedItem(e){
 let {selecteditems}=this.state;
 let isVisible=this.state;
+
 selecteditems=selecteditems.filter(item=>item!==e);
+
 if(selecteditems<4)
   isVisible=true;
   else {
