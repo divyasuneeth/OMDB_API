@@ -64,6 +64,7 @@ handelOnChange(e){
 
 renderSuggestion(){
   const {suggestions}=this.state;
+  const{selecteditems}=this.state;
   let listitem=[];
 
   if(suggestions.length===0)
@@ -75,6 +76,15 @@ renderSuggestion(){
   {
     listitem.push(<List onClick={this.suggestionSelected}
       value={suggestions[i]}/>)
+  }
+
+  const element=document.getElementById('search-text');
+
+  if(selecteditems.length===5) {
+    element.style.display="none";
+  }
+  else {
+    element.style.display="inline";
   }
 
   return(
@@ -91,15 +101,6 @@ suggestionSelected(value){
     if(selecteditems.length<5){
       selecteditems.push(value);
     }
-    
-    const element=document.getElementById('search-text');
-
-    if(selecteditems.length===5) {
-      element.style.display="none";
-    }
-    else {
-      element.style.display="inline";
-    }
 
     this.setState({
       text:value,
@@ -112,6 +113,7 @@ suggestionSelected(value){
 
 renderPill(){
   const {selecteditems}=this.state;
+
   if(selecteditems.length===0)
     return null;
 
