@@ -4,11 +4,11 @@ export class Pill extends React.Component{
 
 constructor(props){
   super(props);
-  this.handelRemove=this.handelRemove.bind(this);
+  this.handleRemove=this.handleRemove.bind(this);
 }
 
 
-handelRemove(){
+handleRemove(){
   this.props.onClick(this.props.selectedItems);
 }
 
@@ -17,7 +17,7 @@ handelRemove(){
   {
     return(
       <p className="pillLi"><span className="ic-tokens">{this.props.selectedItems}</span>
-      <span onClick={this.handelRemove}>x</span></p>
+      <span onClick={this.handleRemove}>x</span></p>
     );
   }
 }

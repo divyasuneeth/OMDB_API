@@ -17,7 +17,7 @@ export class App extends React.Component {
       isVisible:true
     };
 
-  this.handelOnChange=this.handelOnChange.bind(this);
+  this.handleOnChange=this.handleOnChange.bind(this);
   this.getMovies=this.getMovies.bind(this);
   this.suggestionSelected=this.suggestionSelected.bind(this);
   this.removeSelectedItem=this.removeSelectedItem.bind(this);
@@ -57,7 +57,7 @@ getMovies(e){
 
 }
 
-handelOnChange(e){
+handleOnChange(e){
   const text= e.target.value;
   let {suggestions}=this.state;
 
@@ -147,7 +147,7 @@ removeSelectedItem(e){
                 <div className="SearchBox">
                       {this.renderPill()}
                       <Search className={this.state.isVisible} onKeyDown={this.getMovies}
-                           onChange={this.handelOnChange}  text={this.state.text} />
+                           onChange={this.handleOnChange}  text={this.state.text} />
                 </div>
                 {this.renderSuggestion()}
             </div>
