@@ -12,7 +12,8 @@ export class App extends React.Component {
     this.state={
       suggestions:[],
       text:'',
-      selecteditems:[]
+      selecteditems:[],
+      isVisible:true
     };
 
   this.handelOnChange=this.handelOnChange.bind(this);
@@ -64,7 +65,7 @@ handelOnChange(e){
 
 renderSuggestion(){
   const {suggestions}=this.state;
-  const{selecteditems}=this.state;
+  //const{selecteditems}=this.state;
   let listitem=[];
 
   if(suggestions.length===0)
@@ -76,15 +77,6 @@ renderSuggestion(){
   {
     listitem.push(<List onClick={this.suggestionSelected}
       value={suggestions[i]}/>)
-  }
-
-  const element=document.getElementById('search-text');
-
-  if(selecteditems.length===5) {
-    element.style.display="none";
-  }
-  else {
-    element.style.display="inline";
   }
 
   return(
@@ -124,32 +116,33 @@ renderPill(){
 
 removeSelectedItem(e){
 let {selecteditems}=this.state;
+let isVisible=this.state;
 selecteditems=selecteditems.filter(item=>item!==e);
+if(selecteditems<4)
+  isVisible=true;
+  else {
+    isVisible=false;
+  }
 this.setState({
-  selecteditems:selecteditems
+  selecteditems:selecteditems,
+  isVisible:isVisible,
 });
 
 }
 
  render() {
     return (
-    <OutsideAlert>
-        <div className="App">
-            <div className="SearchBox">
-                  {this.renderPill()}
-                  <Search  onKeyDown={this.getMovies}
-                       onChange={this.handelOnChange}  text={this.state.text} />
+        <OutsideAlert>
+            <div className="App">
+                <div className="SearchBox">
+                      {this.renderPill()}
+                      <Search className={this.state.isVisible} onKeyDown={this.getMovies}
+                           onChange={this.handelOnChange}  text={this.state.text} />
+                </div>
+                {this.renderSuggestion()}
             </div>
-            {this.renderSuggestion()}
-        </div>
-    </OutsideAlert>
-
-
-
-
+        </OutsideAlert>
 
     );
   }
-
-
 }
