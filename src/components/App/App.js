@@ -18,7 +18,7 @@ export class App extends React.Component {
   this.handelOnChange=this.handelOnChange.bind(this);
   this.getMovies=this.getMovies.bind(this);
   this.suggestionSelected=this.suggestionSelected.bind(this);
-
+  this.removeSelectedItem=this.removeSelectedItem.bind(this);
   }
 
 
@@ -91,9 +91,14 @@ suggestionSelected(value){
     if(selecteditems.length<5){
       selecteditems.push(value);
     }
+    
+    const element=document.getElementById('search-text');
+
     if(selecteditems.length===5) {
-      const element=document.getElementById('search-text');
       element.style.display="none";
+    }
+    else {
+      element.style.display="inline";
     }
 
     this.setState({
@@ -116,27 +121,15 @@ renderPill(){
 }
 
 removeSelectedItem(e){
-console.log("inside the removeSelected");
-let elements= document.getElementsByClassName('ic-tokens');
-console.log(elements);
-
-for(let i=0;i<elements.length;i++)
-{
-  if(elements[i].textContent===e)
-  {
-    const parent=elements[i].parentNode;
-    const sibling=elements[i].nextSibling;
-    parent.removeChild(elements[i]);
-    parent.removeChild(sibling);
-  }
-}
-
-
+let {selecteditems}=this.state;
+selecteditems=selecteditems.filter(item=>item!==e);
+this.setState({
+  selecteditems:selecteditems
+});
 
 }
 
  render() {
-
     return (
     <OutsideAlert>
         <div className="App">
