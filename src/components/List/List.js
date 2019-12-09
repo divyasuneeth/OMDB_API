@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export class ListPill extends React.Component{
+export class List extends React.Component{
   constructor(props){
     super(props);
     this.handleClick=this.handleClick.bind(this);

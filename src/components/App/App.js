@@ -1,8 +1,8 @@
 import React from 'react';
 import {Search} from '../Search/Search'
-import {ListPill} from '../ListPill/ListPill'
+import {List} from '../List/List'
 import {OutsideAlert} from '../OutsideAlert/OutsideAlert'
-
+import {Pill} from '../List/Pill'
 
 export class App extends React.Component {
 
@@ -73,7 +73,7 @@ renderSuggestion(){
 
   for(let i=0;i<suggestions.length;i++)
   {
-    listitem.push(<ListPill onClick={this.suggestionSelected}
+    listitem.push(<List onClick={this.suggestionSelected}
       value={suggestions[i]}/>)
   }
 
@@ -85,7 +85,7 @@ renderSuggestion(){
 }
 
 
-  suggestionSelected(value){
+suggestionSelected(value){
 
     let {selecteditems}=this.state;
     if(selecteditems.length<5){
@@ -102,14 +102,6 @@ renderSuggestion(){
       selecteditems:selecteditems
     });
 
-    // const pillElement=document.getElementsByClassName('hide');
-    // const element=pillElement[0];
-    // if(element)
-    // {
-    //   element.textContent=value;
-    //   element.className = element.className.replace('hide','ic-tokens' );
-    // }
-
     document.getElementById('search-text').value="";
 }
 
@@ -119,17 +111,31 @@ renderPill(){
     return null;
 
   return(
-    selecteditems.map((item)=><p className="pillLi"><span className="ic-tokens">{item}</span>
-    <span onClick={this.removeSelectedItem}>x</span></p>)
+    selecteditems.map((item)=><Pill onClick={this.removeSelectedItem} selectedItems={item}/>)
   );
 }
 
 removeSelectedItem(e){
 console.log("inside the removeSelected");
-  console.log(e);
+let elements= document.getElementsByClassName('ic-tokens');
+console.log(elements);
+
+for(let i=0;i<elements.length;i++)
+{
+  if(elements[i].textContent===e)
+  {
+    const parent=elements[i].parentNode;
+    const sibling=elements[i].nextSibling;
+    parent.removeChild(elements[i]);
+    parent.removeChild(sibling);
+  }
 }
 
-  render() {
+
+
+}
+
+ render() {
 
     return (
     <OutsideAlert>
