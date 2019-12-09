@@ -4,6 +4,7 @@ import {List} from '../List/List'
 import {OutsideAlert} from '../OutsideAlert/OutsideAlert'
 import {Pill} from '../List/Pill'
 
+
 export class App extends React.Component {
 
   constructor(props){
@@ -30,22 +31,29 @@ getMovies(e){
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
-        xhr.onreadystatechange = () => {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            const response=xhr.response;
-            //console.log(xhr.response);
-              if(response.Response && response.Response!=='False')
-              {
-                let arr=response.Search.map(item=>item.Title);
-                this.setState({
-                  suggestions:arr
-                });
-              }
-          }
-        }
 
-        xhr.open('GET', url);
-        xhr.send();
+          xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              const response=xhr.response;
+              //console.log(xhr.response);
+              if(!response)
+              {
+                throw ("No Response received");
+                //return null;
+              }
+                if(response.Response && response.Response!=='False')
+                {
+                  let arr=response.Search.map(item=>item.Title);
+                  this.setState({
+                    suggestions:arr
+                  });
+                }
+            }
+          }
+
+          xhr.open('GET', url);
+          xhr.send();
+
 
 }
 
@@ -133,6 +141,7 @@ removeSelectedItem(e){
 
  render() {
     return (
+
         <OutsideAlert>
             <div className="App">
                 <div className="SearchBox">
