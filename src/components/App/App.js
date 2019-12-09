@@ -54,9 +54,10 @@ handelOnChange(e){
   let {suggestions}=this.state;
 
   if(text.length>0)
-          {
-            suggestions=suggestions.sort().filter(v =>v.includes(text));
-          }
+  {
+      suggestions=suggestions.sort().filter(v =>v.includes(text));
+  }
+
   this.setState({
     text:e.target.value,
     suggestions:suggestions
@@ -65,7 +66,6 @@ handelOnChange(e){
 
 renderSuggestion(){
   const {suggestions}=this.state;
-  //const{selecteditems}=this.state;
   let listitem=[];
 
   if(suggestions.length===0)
@@ -73,15 +73,10 @@ renderSuggestion(){
     return null;
   }
 
-  for(let i=0;i<suggestions.length;i++)
-  {
-    listitem.push(<List onClick={this.suggestionSelected}
-      value={suggestions[i]}/>)
-  }
-
   return(
         <ul className="ToggleShow">
-          {listitem}
+          {suggestions.map(item=><List onClick={this.suggestionSelected}
+            value={item}/>)}
         </ul>
     );
 }
@@ -89,15 +84,22 @@ renderSuggestion(){
 
 suggestionSelected(value){
 
-    let {selecteditems}=this.state;
+    let {selecteditems,isVisible}=this.state;
+
     if(selecteditems.length<5){
       selecteditems.push(value);
+      isVisible=true;
+    }
+
+    if(selecteditems.length===5){
+      isVisible=false;
     }
 
     this.setState({
       text:value,
       suggestions:[],
-      selecteditems:selecteditems
+      selecteditems:selecteditems,
+      isVisible:isVisible,
     });
 
     document.getElementById('search-text').value="";
@@ -115,19 +117,18 @@ renderPill(){
 }
 
 removeSelectedItem(e){
-let {selecteditems}=this.state;
-let isVisible=this.state;
-
+let {selecteditems,isVisible}=this.state;
 selecteditems=selecteditems.filter(item=>item!==e);
 
-if(selecteditems.length<4)
+if(selecteditems.length===0)
+{
   isVisible=true;
-  else {
-    isVisible=false;
-  }
+}
+
+
 this.setState({
   selecteditems:selecteditems,
-  isVisible:isVisible,
+  isVisible:isVisible
 });
 
 }
