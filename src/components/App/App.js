@@ -120,7 +120,7 @@ let isVisible=this.state;
 
 selecteditems=selecteditems.filter(item=>item!==e);
 
-if(selecteditems<4)
+if(selecteditems.length<4)
   isVisible=true;
   else {
     isVisible=false;
