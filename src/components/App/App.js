@@ -23,7 +23,7 @@ export class App extends React.Component {
   }
 
 
-  getMovies(e){
+getMovies(e){
     let val= this.state.text;
     val += String.fromCharCode(e.keyCode).toLowerCase();
     const url =`http://www.omdbapi.com/?apikey=1a91d62a&s=${val}&y=&r=json`;
@@ -66,7 +66,6 @@ handelOnChange(e){
 
 renderSuggestion(){
   const {suggestions}=this.state;
-  let listitem=[];
 
   if(suggestions.length===0)
   {
@@ -117,19 +116,18 @@ renderPill(){
 }
 
 removeSelectedItem(e){
-let {selecteditems,isVisible}=this.state;
-selecteditems=selecteditems.filter(item=>item!==e);
+  let {selecteditems,isVisible}=this.state;
+  selecteditems=selecteditems.filter(item=>item!==e);
 
-if(selecteditems.length===0)
-{
-  isVisible=true;
-}
+  if(selecteditems.length===0)
+  {
+    isVisible=true;
+  }
 
-
-this.setState({
-  selecteditems:selecteditems,
-  isVisible:isVisible
-});
+  this.setState({
+    selecteditems:selecteditems,
+    isVisible:isVisible
+  });
 
 }
 
